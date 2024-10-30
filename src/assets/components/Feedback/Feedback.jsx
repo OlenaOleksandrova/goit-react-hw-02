@@ -1,10 +1,12 @@
-const Feedback = ({ good, neutral, bad, }) => {
-    <div>
-        <h2>Feedback Summary</h2>
-        <p>Good: {good}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Bad: {bad}</p>
-    </div>
-};
+// import React from "react";
+import s from "./Feedback.module.css"
+
+const Feedback = ({ feedback }) => (
+  <div className={s.container}>
+    <p>Good: {feedback.good}</p>
+    <p>Neutral: {feedback.neutral}</p>
+    <p>Bad: {feedback.bad}</p>
+  </div>
+);
 
 export default Feedback;
