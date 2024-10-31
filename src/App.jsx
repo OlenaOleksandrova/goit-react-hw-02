@@ -45,7 +45,10 @@ const App = () => {
     });
    };
   
-    const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+  const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+  const positivePercent = totalFeedback
+    ? Math.round((feedback.good / totalFeedback) * 100)
+    : 0;
 
    return (
     <div>
@@ -56,12 +59,15 @@ const App = () => {
        <Options feedback={feedback}
                 feedbackType={handleFeedback}
                 resetFeedback={resetFeedback}
-                totalFeedback={totalFeedback}/>
+                totalFeedback={totalFeedback}
+                />
 
       {totalFeedback > 0 ? (
 
         // відображення статистики
-        <Feedback feedback={feedback} totalFeedback={totalFeedback} />
+         <Feedback feedback={feedback}
+           totalFeedback={totalFeedback}
+         positivePercent={positivePercent}/>
       ) : (
         <Notification message="No feedback collected yet" />
       )}
