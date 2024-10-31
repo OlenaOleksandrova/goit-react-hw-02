@@ -12,9 +12,8 @@ const App = () => {
     good: 0,
     neutral: 0,
     bad: 0,
+    // Reset: 0,
   });
-
-   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
 
   // const handleFeedback = value => {
   //   console.log(value);
@@ -36,14 +35,28 @@ const App = () => {
     ...prev,
     [value]: prev[value] + 1,
   }))
- }
+  }
+  
+   const resetFeedback = () => {
+    setFeedback({
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    });
+   };
+  
+    const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+
    return (
     <div>
       <h1>Sip Happens Café</h1>
       <p>Please leave your feedback about our service by selecting one of the options below.</p>
 
        {/* вибір відгуків(кнопки) */}
-      <Options feedback={feedback} feedbackType={handleFeedback} />
+       <Options feedback={feedback}
+                feedbackType={handleFeedback}
+                resetFeedback={resetFeedback}
+                totalFeedback={totalFeedback}/>
 
       {totalFeedback > 0 ? (
 

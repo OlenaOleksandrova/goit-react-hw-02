@@ -7,7 +7,10 @@ const Feedback = ({ feedback, totalFeedback }) => (
     <p>Neutral: {feedback.neutral}</p>
     <p>Bad: {feedback.bad}</p>
     <p>Total Feedback: {totalFeedback}</p>
+    
+     
   </div>
+  
 );
 
 export default Feedback;

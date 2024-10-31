@@ -12,7 +12,7 @@
 }
 .listButton {
     display: flex;
-    gap: 10px
+    gap: 10px;
 }
 .container {
     max-width: 768px;
