@@ -2,6 +2,7 @@
 import { useState } from "react"
 import Feedback from "./assets/components/Feedback/Feedback";
 import Options from "./assets/components/Options/Options";
+import Notification from "./assets/components/Notification/Notification"
 
 
 
@@ -13,6 +14,7 @@ const App = () => {
     bad: 0,
   });
 
+   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
 
   // const handleFeedback = value => {
   //   console.log(value);
@@ -29,24 +31,30 @@ const App = () => {
 
 
   const handleFeedback  = value => {
-  
+  console.log(value)
   setFeedback(prev => ({
     ...prev,
     [value]: prev[value] + 1,
   }))
  }
-  return (
-    <div >
+   return (
+    <div>
       <h1>Sip Happens Café</h1>
       <p>Please leave your feedback about our service by selecting one of the options below.</p>
-      
-      {/*  вибір відгуків(кнопки) */}
-      <Options feedbackType={handleFeedback} />
 
-      {/* відображення статистики */}
-      <Feedback feedback={feedback} />
+       {/* вибір відгуків(кнопки) */}
+      <Options feedback={feedback} feedbackType={handleFeedback} />
+
+      {totalFeedback > 0 ? (
+
+        // відображення статистики
+        <Feedback feedback={feedback} totalFeedback={totalFeedback} />
+      ) : (
+        <Notification message="No feedback collected yet" />
+      )}
     </div>
   );
 };
 
 export default App
+ 
