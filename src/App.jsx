@@ -1,5 +1,5 @@
 // import React from "react";
-import { useState } from "react"
+import { useState, useEffect} from "react"
 import Feedback from "./assets/components/Feedback/Feedback";
 import Options from "./assets/components/Options/Options";
 import Notification from "./assets/components/Notification/Notification"
@@ -8,11 +8,9 @@ import Notification from "./assets/components/Notification/Notification"
 
 const App = () => {
  
-  const [feedback, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-    // Reset: 0,
+  const [feedback, setFeedback] = useState(() => {
+    const savedFeedback = localStorage.getItem("feedback");
+    return savedFeedback ? JSON.parse(savedFeedback) : { good: 0, neutral: 0, bad: 0 };
   });
 
   // const handleFeedback = value => {
@@ -37,6 +35,7 @@ const App = () => {
   }))
   }
   
+  // скидання відгуків
    const resetFeedback = () => {
     setFeedback({
       good: 0,
@@ -45,6 +44,12 @@ const App = () => {
     });
    };
   
+  // збереж.відгуків у localStorage
+    useEffect(() => {
+    localStorage.setItem("feedback", JSON.stringify(feedback));
+  }, [feedback]);
+  
+  // обчислюв.значення % з дз
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
   const positivePercent = totalFeedback
     ? Math.round((feedback.good / totalFeedback) * 100)
