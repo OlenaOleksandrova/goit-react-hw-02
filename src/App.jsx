@@ -1,8 +1,8 @@
 // import React from "react";
 import { useState, useEffect} from "react"
-import Feedback from "./assets/components/Feedback/Feedback";
-import Options from "./assets/components/Options/Options";
-import Notification from "./assets/components/Notification/Notification"
+import Feedback from "./components/Feedback/Feedback";
+import Options from "./components/Options/Options";
+import Notification from "./components/Notification/Notification"
 
 
 
